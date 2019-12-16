@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Boolean, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Boolean, Integer, String, DateTime
 from sqlalchemy_utils import PasswordType, EmailType, PhoneNumberType as PhoneType
 
 from app import db, lm

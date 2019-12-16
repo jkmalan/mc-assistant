@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 
 from app.core import configs
+
 config = configs.Config()
 
 db = SQLAlchemy()
@@ -26,7 +27,6 @@ def create_app():
     app.register_blueprint(site)
 
     # Prepare database
-    from app.data import models
     with app.app_context():
         db.create_all()
 

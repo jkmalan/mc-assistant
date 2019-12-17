@@ -1,0 +1,32 @@
+#site {
+
+}
+
+#navigation {
+    height: 64px;
+
+    padding: 0;
+    margin: 0;
+
+    border-bottom: 1px solid lightgray;
+}
+
+#navigation .navbar-brand {
+    height: 32px;
+    width: auto;
+
+    padding: 0;
+    margin: 0;
+}
+
+#navigation .navbar-brand img {
+    height: 32px;
+    width: auto;
+
+    padding: 0;
+    margin: 0;
+}
+
+#site #content {
+    margin-top: 76px;
+}

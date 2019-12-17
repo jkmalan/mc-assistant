@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "57dd85d587c548a71f73c74661247a3fd9f926f84ce7409ba22ebc2ec58f5d59"
+            "sha256": "4272a0b4557469a8c7115f38edf6eb0bc8dbd068d42327528f70e93ab1510c94"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -248,6 +248,16 @@
             ],
             "version": "==1.1.1"
         },
+        "mysqlclient": {
+            "hashes": [
+                "sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39",
+                "sha256:9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087",
+                "sha256:f3fdaa9a38752a3b214a6fe79d7cae3653731a53e577821f9187e67cbecb2e16",
+                "sha256:f646f8d17d02be0872291f258cce3813497bc7888cd4712a577fd1e719b2f213"
+            ],
+            "index": "pypi",
+            "version": "==1.4.6"
+        },
         "oauth2client": {
             "hashes": [
                 "sha256:b8a81cc5d60e2d364f0b1b98f958dbd472887acaf1a5b05e21c28c31a2d6d3ac",
@@ -270,6 +280,14 @@
             ],
             "index": "pypi",
             "version": "==1.7.2"
+        },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:239507184ee5b1b83557005af1d5fcce70f83ae18f5dff45b94a67226db10d63",
+                "sha256:aaa19bc1f2c7efbf7a94be33558e0c5b71620377c9271692d3e314c558962460"
+            ],
+            "index": "pypi",
+            "version": "==8.11.1"
         },
         "pyasn1": {
             "hashes": [

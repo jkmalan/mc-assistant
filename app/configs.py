@@ -1,6 +1,6 @@
 from os import path
 
-dir_db = path.join(path.dirname(path.abspath(__file__)), '../../sql')
+dir_db = path.join(path.dirname(path.abspath(__file__)), '../sql')
 
 
 class Config(object):

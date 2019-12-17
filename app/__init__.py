@@ -3,9 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
 
-from app.core import configs
+from app.configs import Config
 
-config = configs.Config()
+config = Config()
 
 db = SQLAlchemy()
 lm = LoginManager()

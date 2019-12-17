@@ -1,6 +1,13 @@
-# Project files
+### Project files
 .idea/
+
+# Avoid pushing the database to Git
+# It auto-generates on project start, populate manually or with 'populate_database.sql'
 *.db-*
+*.db
+*.sqlite
+
+# Avoid pushing credentials to Git
 google-auth.json
 
 ### macOS template
@@ -177,8 +184,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.venv
+# .env
+# .venv
 env/
 venv/
 ENV/

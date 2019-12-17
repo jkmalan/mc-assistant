@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-extension.css') }}">
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+
+<body id="site">
+
+    <nav class="navbar navbar-expand-md navbar-light fixed-top py-0 my-0" id="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('site.home') }}">
+                <img src="{{ url_for('static', filename='img/logo/mc-logo@0,125x.png') }}" alt="Micro Center Home" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggle-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    {%  if not current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('site.home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign Up</a>
+                    </li>
+                    {%  endif %}
+                    {%  if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('dash.home') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('dash.home') }}">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign Out</a>
+                    </li>
+                    {%  endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="content">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+
+    <div class="container-fluid fixed-bottom p-0 m-0">
+
+        <div class="container">
+
+            <ul class="list-group-horizontal">
+                <li class="list-inline-item">
+                    <a class="" href="{{ url_for('site.home') }}">Home</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="" href="{{ url_for('site.home') }}">About</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="" href="{{ url_for('site.home') }}">Contact</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="" href="{{ url_for('site.home') }}">Support</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

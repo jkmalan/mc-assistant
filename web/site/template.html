@@ -37,10 +37,10 @@
                         <a class="nav-link" href="{{ url_for('site.home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign In</a>
+                        <a class="nav-link" href="{{ url_for('site.signin') }}">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign Up</a>
+                        <a class="nav-link" href="{{ url_for('site.signup') }}">Sign Up</a>
                     </li>
                     {%  endif %}
                     {%  if current_user.is_authenticated %}
@@ -51,7 +51,7 @@
                         <a class="nav-link" href="{{ url_for('dash.home') }}">Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.home') }}">Sign Out</a>
+                        <a class="nav-link" href="{{ url_for('site.signout') }}">Sign Out</a>
                     </li>
                     {%  endif %}
                 </ul>

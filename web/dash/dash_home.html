@@ -1,0 +1,46 @@
+{% extends 'template.html' %}
+{% block title %}MC | Dashboard - Home{% endblock %}
+{% block content %}
+
+    <div class="container">
+
+        <h3>Dashboard</h3>
+
+        <p>This page contains all general information and overview</p>
+
+        <div class="row">
+            <ul class="col-12 nav nav-tabs p-0" id="navbar-application">
+                <li class="col nav-item"><a class="nav-link active" data-toggle="list" href="#unsubmitted">Unsubmitted</a></li>
+                <li class="col nav-item"><a class="nav-link" data-toggle="list" href="#submitted">Submitted</a></li>
+                <li class="col nav-item"><a class="nav-link" data-toggle="list" href="#approved">Approved</a></li>
+            </ul>
+        </div>
+
+        <div class="row border-left border-right border-bottom">
+
+            <div class="col-12 tab-content">
+                <div class="container col tab-pane p-3 active" id="unsubmitted">
+                    <div class="row">
+                        <h3>Unsubmitted Applications</h3>
+                    </div>
+                    <p>Boring</p>
+                </div>
+                <div class="container col tab-pane p-3" id="submitted">
+                    <div class="row">
+                        <h3>Submitted Applications</h3>
+                    </div>
+                    <p>Boring</p>
+                </div>
+                <div class="container col tab-pane p-3" id="approved">
+                    <div class="row">
+                        <h3>Approved Applications</h3>
+                    </div>
+                    <p>Boring</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

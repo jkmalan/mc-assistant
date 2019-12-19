@@ -89,14 +89,7 @@ class User(Base):
 
 @lm.user_loader
 def user_loader(user_id):
-    if isinstance(user_id, int):
-        pass
-    elif isinstance(user_id, str):
-        if user_id.strip().isdigit():
-            user_id = int(user_id)
-        else:
-            return
-    else:
-        return
+    if isinstance(user_id, str):
+        user_id = uuid.UUID(user_id)
 
-    return User.query.get(user_id)
+    return User.query.find_one(user_id)

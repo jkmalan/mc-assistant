@@ -1,34 +1,11 @@
 import uuid
 
-from flask_sqlalchemy import BaseQuery
 from sqlalchemy import Column, Boolean, Integer, String, DateTime, and_
-from sqlalchemy_utils import UUIDType, PasswordType, EmailType, PhoneNumberType as PhoneType, force_auto_coercion
+from sqlalchemy_utils import UUIDType, PasswordType, EmailType, force_auto_coercion
 
-from app import db, lm
+from microcenter import db, lm
 
 force_auto_coercion()
-
-
-class Query(BaseQuery):
-
-    def find_one(self, identity, include_removed=False):
-        query = self.get(identity)
-        if isinstance(query, Base):
-            if not include_removed and query.removed_on is not None:
-                query = None
-        return query
-
-    def find_all(self, include_removed=False, *criterion):
-        if not include_removed:
-            return self.filter(and_(Base.removed_on.isnot(None), *criterion))
-        else:
-            return self.filter(*criterion)
-
-    def find_all_by(self, include_removed=False, **kwargs):
-        if not include_removed:
-            return self.filter(and_(Base.removed_on.isnot(None), **kwargs))
-        else:
-            return self.filter(and_(**kwargs))
 
 
 class Base(db.Model):
@@ -36,8 +13,6 @@ class Base(db.Model):
     created_on = Column(DateTime, default=db.func.now())
     updated_on = Column(DateTime, default=db.func.now(), onupdate=db.func.now())
     removed_on = Column(DateTime)
-
-    query_class = Query
 
     def create(self):
         db.session.add(self)
@@ -57,15 +32,13 @@ class Base(db.Model):
 class User(Base):
     __tablename__ = 'user'
     uuid = Column(UUIDType(binary=False), primary_key=True, default=uuid.uuid4)
+    email = Column(EmailType(128), unique=True, nullable=False)
     username = Column(String(32), unique=True, nullable=False)
     password = Column(PasswordType(schemes=['pbkdf2_sha512']))
     firstname = Column(String(32), nullable=False)
     lastname = Column(String(32), nullable=False)
-    email = Column(EmailType(128), nullable=False)
-    phone = Column(PhoneType(), nullable=False)
 
-    type = Column(String(32), default='')
-    role = Column(String(32), default='user')
+    role = Column(String(32), default='associate')
     status = Column(String(32), default='active')
 
     session_login = Column(Boolean, default=False)
@@ -92,4 +65,4 @@ def user_loader(user_id):
     if isinstance(user_id, str):
         user_id = uuid.UUID(user_id)
 
-    return User.query.find_one(user_id)
+    return User.query.get(user_id)

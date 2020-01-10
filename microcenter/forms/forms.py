@@ -18,13 +18,6 @@ class SignupForm(FlaskForm):
     username = StringField('Username', validators=[
         InputRequired()
     ])
-    email = StringField('Email', validators=[
-        InputRequired(),
-        Email()
-    ])
-    phone = StringField('Phone', validators=[
-        InputRequired()
-    ])
     password = PasswordField('Password', validators=[
         InputRequired(),
         Length(min=8, message='The password must be at least 8 characters')

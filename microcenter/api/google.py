@@ -1,7 +1,7 @@
 from oauth2client import client
 from googleapiclient.discovery import build
 
-from app import config
+from microcenter import config
 
 credential = client.AccessTokenCredentials(config.GOOGLE_ACCESS_KEY, config.GOOGLE_USER_AGENT)
 service = build('calendar', 'v3', credentials=credential)

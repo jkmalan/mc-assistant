@@ -1,14 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_mail import Mail
 
-from app.configs import Config
+from microcenter.configs import Config
 config = Config()
 
 db = SQLAlchemy()
 lm = LoginManager()
-mx = Mail()
 
 
 def create_app():
@@ -18,22 +16,24 @@ def create_app():
 
     db.init_app(app)
     lm.init_app(app)
-    mx.init_app(app)
 
     # Register routes
-    from app.route import dash, site
-    app.register_blueprint(dash)
-    app.register_blueprint(site)
+    from microcenter.views.anonymous import anonymous_bp
+    app.register_blueprint(anonymous_bp)
+    from microcenter.views.associate import associate_bp
+    app.register_blueprint(associate_bp)
+    from microcenter.views.manager import manager_bp
+    app.register_blueprint(manager_bp)
 
     # Prepare assets directory
-    app.static_folder = '../web/static'
+    app.template_folder = '../templates'
+    app.static_folder = '../static'
 
     # Prepare database
-    from app.main import models
     with app.app_context():
         db.create_all()
 
     # Prepare login manager
-    lm.login_view = 'site.signin'
+    lm.login_view = 'customer.signin'
 
     return app

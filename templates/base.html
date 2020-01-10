@@ -23,7 +23,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top py-0 my-0" id="navigation">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('site.home') }}">
+            <a class="navbar-brand" href="{{ url_for('anonymous.home') }}">
                 <img src="{{ url_for('static', filename='img/logo/mc-logo-banner@0,0625x.png') }}" alt="Micro Center Home" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
@@ -34,24 +34,24 @@
                 <ul class="navbar-nav ml-auto">
                     {%  if not current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.home') }}">Home</a>
+                        <a class="nav-link" href="{{ url_for('anonymous.home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.signin') }}">Sign In</a>
+                        <a class="nav-link" href="{{ url_for('anonymous.signin') }}">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.signup') }}">Sign Up</a>
+                        <a class="nav-link" href="{{ url_for('anonymous.signup') }}">Sign Up</a>
                     </li>
                     {%  endif %}
                     {%  if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('dash.home') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ url_for('associate.home') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('dash.home') }}">Account</a>
+                        <a class="nav-link" href="{{ url_for('associate.home') }}">Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('site.signout') }}">Sign Out</a>
+                        <a class="nav-link" href="{{ url_for('associate.signout') }}">Sign Out</a>
                     </li>
                     {%  endif %}
                 </ul>
@@ -71,16 +71,16 @@
 
             <ul class="list-group-horizontal">
                 <li class="list-inline-item">
-                    <a class="" href="{{ url_for('site.home') }}">Home</a>
+                    <a class="" href="{{ url_for('anonymous.home') }}">Home</a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="" href="{{ url_for('site.home') }}">About</a>
+                    <a class="" href="{{ url_for('anonymous.home') }}">About</a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="" href="{{ url_for('site.home') }}">Contact</a>
+                    <a class="" href="{{ url_for('anonymous.home') }}">Contact</a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="" href="{{ url_for('site.home') }}">Support</a>
+                    <a class="" href="{{ url_for('anonymous.home') }}">Support</a>
                 </li>
             </ul>
         </div>

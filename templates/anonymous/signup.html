@@ -1,4 +1,4 @@
-{% extends 'template.html' %}
+{% extends 'base.html' %}
 {% block title %}MC | Sign Up{% endblock %}
 {% block content %}
 
@@ -36,26 +36,6 @@
                     {{ form.username(class_='form-control') }}
                     {% if form.username.errors %}
                         {% for error in form.username.errors %}
-                            <p class="text-danger small">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </label>
-
-                <label class="form-group">
-                    Email
-                    {{ form.email(class_='form-control') }}
-                    {% if form.email.errors %}
-                        {% for error in form.email.errors %}
-                            <p class="text-danger small">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </label>
-
-                <label class="form-group">
-                    Phone
-                    {{ form.phone(class_='form-control') }}
-                    {% if form.phone.errors %}
-                        {% for error in form.phone.errors %}
                             <p class="text-danger small">{{ error }}</p>
                         {% endfor %}
                     {% endif %}

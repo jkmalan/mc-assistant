@@ -21,9 +21,9 @@ def create_app():
     from microcenter.views.anonymous import anonymous_bp
     app.register_blueprint(anonymous_bp)
     from microcenter.views.associate import associate_bp
-    app.register_blueprint(associate_bp)
+    app.register_blueprint(associate_bp, url_prefix='/a')
     from microcenter.views.manager import manager_bp
-    app.register_blueprint(manager_bp)
+    app.register_blueprint(manager_bp, url_prefix='/m')
 
     # Prepare assets directory
     app.template_folder = '../templates'
@@ -34,6 +34,6 @@ def create_app():
         db.create_all()
 
     # Prepare login manager
-    lm.login_view = 'customer.signin'
+    lm.login_view = 'anonymous.signin'
 
     return app

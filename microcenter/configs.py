@@ -1,6 +1,6 @@
 from os import path, getenv
 
-DATABASE_DIR = path.join(path.dirname(path.abspath(__file__)), '../database')
+DATABASE_DIR = path.join(path.dirname(path.abspath(__file__)), '../databases')
 
 
 class Config(object):

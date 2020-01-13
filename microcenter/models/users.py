@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import Column, Boolean, Integer, String, DateTime, and_
+from sqlalchemy import Column, Boolean, ForeignKey, Integer, String, DateTime, and_
 from sqlalchemy_utils import UUIDType, PasswordType, EmailType, force_auto_coercion
 
 from microcenter import db, lm
@@ -38,11 +38,12 @@ class User(Base):
     firstname = Column(String(32), nullable=False)
     lastname = Column(String(32), nullable=False)
 
-    role = Column(String(32), default='associate')
     status = Column(String(32), default='active')
 
     session_login = Column(Boolean, default=False)
     session_count = Column(Integer, default=0)
+
+    roles = db.relationship('UserRole', back_populates='user')
 
     def get_id(self):
         return self.uuid
@@ -59,10 +60,31 @@ class User(Base):
     def is_authenticated(self):
         return self.session_login
 
+    def get_roles(self):
+        user_roles = []
+        for role in self.roles:
+            user_roles.append(role.role_name)
+        return user_roles
 
-@lm.user_loader
-def user_loader(user_id):
-    if isinstance(user_id, str):
-        user_id = uuid.UUID(user_id)
+    def assign(self, roles):
+        for role in roles:
+            user_role = UserRole(user_uuid=self.uuid, role_name=role)
+            db.session.add(user_role)
+            db.session.commit()
 
-    return User.query.get(user_id)
+
+class UserRole(db.Model):
+    __tablename__ = 'user_role'
+    user_uuid = db.Column(UUIDType(binary=False), ForeignKey('user.uuid'), primary_key=True)
+    role_name = db.Column(String(32), ForeignKey('role.name'), primary_key=True)
+
+    user = db.relationship('User', back_populates='roles')
+    role = db.relationship('Role', back_populates='users')
+
+
+class Role(db.Model):
+    __tablename__ = 'role'
+    name = Column(String(32), primary_key=True)
+    rank = Column(Integer, nullable=False)
+
+    users = db.relationship('UserRole', back_populates='role')
